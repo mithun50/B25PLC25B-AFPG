@@ -63,17 +63,45 @@
     color: var(--text-muted);
   }
 
-  .creator-credit {
+  .header-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin-top: 10px;
+  }
+
+  .creator-credit {
     font-size: 0.8rem !important;
     color: var(--primary-color) !important;
     background: #e2e8f0;
     display: inline-block;
     padding: 4px 8px;
     border-radius: 4px;
+    margin: 0;
   }
   .creator-credit strong {
     font-weight: 700;
+  }
+
+  .github-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    background: #e2e8f0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.1s;
+  }
+  
+  .github-link:hover {
+    background: #cbd5e1;
+  }
+  .github-link:active {
+    transform: scale(0.95);
   }
   
   #generator-form {
