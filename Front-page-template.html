@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 2 - DBIT</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&family=Arial&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #000;
+    }
+
+    .page {
+      width: 794px;
+      min-height: 1123px;
+      margin: 0 auto;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* ── Header ── */
+    .header {
+      padding: 18px 30px 0 30px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .logo {
+      width: 95px;
+      height: 95px;
+      flex-shrink: 0;
+    }
+
+    .college-info {
+      flex: 1;
+    }
+
+    .trust-name {
+      font-size: 11px;
+      color: #333;
+      margin-bottom: 2px;
+      font-style: italic;
+    }
+
+    .college-name {
+      font-size: 42px;
+      font-weight: 900;
+      color: #003087;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+
+    .college-name span {
+      color: #e8a000;
+    }
+
+    .institute-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #003087;
+      letter-spacing: 2px;
+      margin-top: 2px;
+    }
+
+    .address {
+      font-size: 12px;
+      color: #e8a000;
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    .autonomous-badge {
+      display: inline-block;
+      background: #e8a000;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 10px;
+      margin-top: 5px;
+      letter-spacing: 1px;
+    }
+
+    /* ── Gold bar ── */
+    .gold-bar {
+      height: 14px;
+      background: #e8a000;
+      margin-top: 14px;
+    }
+
+    /* ── Department ── */
+    .department {
+      text-align: center;
+      color: #003087;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 22px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Assignment title ── */
+    .assignment-title {
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    .assignment-title h1 {
+      font-size: 52px;
+      font-weight: 900;
+      color: #003087;
+      letter-spacing: 2px;
+    }
+
+    .subject-line {
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+      margin-top: 8px;
+      line-height: 1.7;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 2px solid #e8a000;
+      margin: 22px 30px 0 30px;
+    }
+
+    /* ── Info table ── */
+    .info-table {
+      margin: 0 30px;
+      border-collapse: collapse;
+      width: calc(100% - 60px);
+    }
+
+    .info-table tr {
+      border-bottom: 1px solid #ddd;
+    }
+
+    .info-table tr:first-child {
+      border-top: none;
+    }
+
+    .info-table td {
+      padding: 13px 16px;
+      font-size: 13px;
+    }
+
+    .info-table td:first-child {
+      font-weight: 700;
+      color: #003087;
+      width: 38%;
+    }
+
+    .info-table td:last-child {
+      color: #333;
+    }
+
+    /* ── Bottom divider ── */
+    .bottom-divider {
+      border: none;
+      border-top: 2px solid #e8a000;
+      margin: 0 30px;
+    }
+
+    .institute-footer-address {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      margin-top: 8px;
+    }
+
+    /* ── Spacer ── */
+    .spacer {
+      flex: 1;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: #003087;
+      color: #fff;
+      text-align: center;
+      font-size: 10px;
+      padding: 9px 20px;
+      letter-spacing: 0.3px;
+    }
+
+    @media print {
+      body {
+        margin: 0;
+      }
+
+      .page {
+        width: 100%;
+        min-height: 100vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <div class="header">
+      <img src="dblogo.png" class="logo" alt="DBIT Logo">
+
+      <div class="college-info">
+        <div class="trust-name">Wayanamac Education Trust®</div>
+        <div class="college-name">DON <span>BOSCO</span></div>
+        <div class="institute-name">INSTITUTE OF TECHNOLOGY</div>
+        <div class="address">Kumbalagodu, Mysore Road, Bengaluru-560074</div>
+        <div class="autonomous-badge">AN AUTONOMOUS INSTITUTION</div>
+      </div>
+    </div>
+
+    <!-- Gold bar -->
+    <div class="gold-bar"></div>
+
+    <!-- Department -->
+    <div class="department">Department of Computer Science &amp; Engineering</div>
+
+    <!-- Assignment Title -->
+    <div class="assignment-title">
+      <h1>ASSIGNMENT 2</h1>
+      <div class="subject-line">
+        Introduction to Python Programming<br>
+        Subject Code : B25PLC25B
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <hr class="divider">
+
+    <!-- Info Table -->
+    <table class="info-table">
+      <tr>
+        <td>Student Name</td>
+        <td>Mithun Gowda B</td>
+      </tr>
+      <tr>
+        <td>USN</td>
+        <td>1DB25CS109</td>
+      </tr>
+      <tr>
+        <td>Subject</td>
+        <td>Introduction to Python Programming</td>
+      </tr>
+      <tr>
+        <td>Subject Code</td>
+        <td>B25PLC25B</td>
+      </tr>
+      <tr>
+        <td>Project Title</td>
+        <td>pyKannada IDE — A Unique IDE</td>
+      </tr>
+      <tr>
+        <td>Professor</td>
+        <td>Mr. Bharath A</td>
+      </tr>
+      <tr>
+        <td>Academic Year</td>
+        <td>2026</td>
+      </tr>
+    </table>
+
+    <!-- Bottom divider -->
+    <hr class="bottom-divider">
+
+    <div class="institute-footer-address">
+      Don Bosco Institute of Technology | Kumbalagodu, Mysore Road, Bengaluru &ndash; 560074
+    </div>
+
+    <div class="spacer"></div>
+
+    <!-- Footer -->
+    <div class="footer">
+      Introduction to Python Programming &nbsp;|&nbsp; B25PLC25B &nbsp;|&nbsp; Page 1
+    </div>
+
+  </div>
+</body>
+
+</html>
