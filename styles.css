@@ -495,7 +495,7 @@
   
     #template-root .page {
       width: 100%;
-      min-height: 100vh;
+      min-height: 297mm;
       margin: 0;
     }
     
@@ -508,7 +508,7 @@
   /* ==========================================================================
      Mobile Responsiveness
      ========================================================================== */
-  @media (max-width: 768px) {
+  @media screen and (max-width: 768px) {
     .app-container {
       flex-direction: column;
       overflow-y: auto;
