@@ -25,6 +25,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const tFooterSubject = document.getElementById('t-footer-subject');
   const tFooterCode = document.getElementById('t-footer-code');
 
+  // Parse URL parameters to auto-fill form
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('department')) fDepartment.value = params.get('department');
+  if (params.has('assignment')) fAssignmentNum.value = params.get('assignment');
+  if (params.has('year')) fAcademicYear.value = params.get('year');
+  if (params.has('subjectName')) fSubjectName.value = params.get('subjectName');
+  if (params.has('subjectCode')) fSubjectCode.value = params.get('subjectCode');
+  if (params.has('studentName')) fStudentName.value = params.get('studentName');
+  if (params.has('usn')) fUsn.value = params.get('usn');
+  if (params.has('projectTitle')) fProjectTitle.value = params.get('projectTitle');
+  if (params.has('professor')) fProfessor.value = params.get('professor');
+
+  // Helper function to trigger initial update
+  const triggerInputEvent = (element) => {
+    element.dispatchEvent(new Event('input', { bubbles: true }));
+  };
+
   // Listeners for live update
   fDepartment.addEventListener('input', (e) => { tDepartment.textContent = e.target.value; });
   fAssignmentNum.addEventListener('input', (e) => { tAssignmentNum.textContent = e.target.value; });
@@ -43,6 +60,17 @@ document.addEventListener('DOMContentLoaded', () => {
   fProjectTitle.addEventListener('input', (e) => { tProjectTitle.textContent = e.target.value; });
   fProfessor.addEventListener('input', (e) => { tProfessor.textContent = e.target.value; });
   fAcademicYear.addEventListener('input', (e) => { tAcademicYear.textContent = e.target.value; });
+
+  // Trigger initial update for all fields so the template matches the default/pre-filled values
+  triggerInputEvent(fDepartment);
+  triggerInputEvent(fAssignmentNum);
+  triggerInputEvent(fSubjectName);
+  triggerInputEvent(fSubjectCode);
+  triggerInputEvent(fStudentName);
+  triggerInputEvent(fUsn);
+  triggerInputEvent(fProjectTitle);
+  triggerInputEvent(fProfessor);
+  triggerInputEvent(fAcademicYear);
 
   // Zoom logic
   const templateRoot = document.getElementById('template-root');
