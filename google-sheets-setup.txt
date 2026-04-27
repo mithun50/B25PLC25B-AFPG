@@ -1,0 +1,88 @@
+B25PLC25B-AFPG Google Sheets Setup
+
+Google Sheet ID:
+1WwHdsN5ylrOy6ZaGYYlElfB1IzNQYKdX26C3w8r9ccI
+
+Google Sheet URL:
+https://docs.google.com/spreadsheets/d/1WwHdsN5ylrOy6ZaGYYlElfB1IzNQYKdX26C3w8r9ccI/edit
+
+Apps Script Web App URL:
+https://script.google.com/macros/s/AKfycbyQg9zBCq2kz05p4BLLKNmEufvzjh6CAj90u_pIkvMroZuF3kndgvxmpsu43D1Jw_hkYA/exec
+
+Apps Script Deployment ID:
+AKfycbyQg9zBCq2kz05p4BLLKNmEufvzjh6CAj90u_pIkvMroZuF3kndgvxmpsu43D1Jw_hkYA
+
+Sheet header row:
+timestamp	type	department	assignment	studentName	usn	subject	subjectCode	topic	projectTitle	professor	academicYear
+
+Apps Script Code:
+
+const SPREADSHEET_ID = '1WwHdsN5ylrOy6ZaGYYlElfB1IzNQYKdX26C3w8r9ccI';
+const SHEET_NAME = 'Sheet1';
+
+function getSheet() {
+  return SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+}
+
+function doPost(e) {
+  const sheet = getSheet();
+  const data = JSON.parse(e.postData.contents || '{}');
+
+  sheet.appendRow([
+    new Date(),
+    data.type || '',
+    data.department || '',
+    data.assignment || '',
+    data.studentName || '',
+    data.usn || '',
+    data.subject || '',
+    data.subjectCode || '',
+    data.topic || '',
+    data.projectTitle || '',
+    data.professor || '',
+    data.academicYear || ''
+  ]);
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ ok: true }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function doGet(e) {
+  const sheet = getSheet();
+  const rows = sheet.getDataRange().getValues();
+  const headers = rows.shift();
+
+  const data = rows.map(row => {
+    const item = {};
+    headers.forEach((header, i) => {
+      item[header] = row[i];
+    });
+    return item;
+  });
+
+  const output = JSON.stringify({ rows: data });
+  const callback = e.parameter.callback;
+
+  if (callback) {
+    return ContentService
+      .createTextOutput(`${callback}(${output})`)
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+
+  return ContentService
+    .createTextOutput(output)
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+Deployment:
+1. Open the sheet.
+2. Go to Extensions -> Apps Script.
+3. Paste the code above.
+4. Click Deploy -> New deployment.
+5. Select type: Web app.
+6. Execute as: Me.
+7. Who has access: Anyone.
+8. Deploy and copy the Web App URL.
+9. Paste the Web App URL into script.js as SHEET_LOG_URL.
+10. Paste the same Web App URL into admin.html as SHEET_READ_URL.

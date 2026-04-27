@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Analytics Config
+  // Uses the same Google Apps Script endpoint pattern as the Chemistry FPG admin panel.
+  const SHEET_LOG_URL = 'https://script.google.com/macros/s/AKfycbyQg9zBCq2kz05p4BLLKNmEufvzjh6CAj90u_pIkvMroZuF3kndgvxmpsu43D1Jw_hkYA/exec';
+
   // Input fields
   const fDepartment = document.getElementById('f-department');
   const fAssignmentNum = document.getElementById('f-assignment-num');
@@ -24,6 +28,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const tAcademicYear = document.getElementById('t-academic-year');
   const tFooterSubject = document.getElementById('t-footer-subject');
   const tFooterCode = document.getElementById('t-footer-code');
+
+  async function logGeneration(type) {
+    if (!SHEET_LOG_URL || SHEET_LOG_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL') return;
+
+    try {
+      await fetch(SHEET_LOG_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type,
+          department: fDepartment.value || '',
+          assignment: fAssignmentNum.value || '',
+          studentName: fStudentName.value || '',
+          usn: fUsn.value || '',
+          subject: fSubjectName.value || '',
+          subjectCode: fSubjectCode.value || '',
+          topic: fProjectTitle.value || '',
+          projectTitle: fProjectTitle.value || '',
+          professor: fProfessor.value || '',
+          academicYear: fAcademicYear.value || ''
+        })
+      });
+    } catch (_) {
+      // Logging should never block page generation.
+    }
+  }
 
   // Listeners for live update
   fDepartment.addEventListener('input', (e) => { tDepartment.textContent = e.target.value; });
@@ -94,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Print Logic
   const btnPrint = document.getElementById('btn-print');
   btnPrint.addEventListener('click', () => {
+    logGeneration('PDF');
     window.print();
   });
 
@@ -123,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.download = `front-page-${fUsn.value || 'export'}.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
+        logGeneration('PNG');
         
         // Restore zoom and button state
         currentZoom = previousZoom;
